@@ -18,25 +18,37 @@ namespace Entidades
             ComprobarDormido();
             if (Lleno)
                 throw new Exception("Mascota llena");
+            Lleno = true;
             return "Comiendo";
         }
-        public void IrAlBanho()
+        public string IrAlBanio()
         {
             ComprobarDormido();
+            if (!Lleno)
+                throw new Exception("Mascota no comio");
+            Lleno = false;
+            return "Yendo al baño";
         }
-        public void Jugar()
+        public string Jugar()
         {
             ComprobarDormido();
+            if (!Lleno)
+                throw new Exception("Mascota no comio");
+            return "Jugando";
         }
-        public void Dormir()
+        public string Dormir()
         {
             if (Dormido)
                 throw new Exception("Mascota ya esta durmiendo");
+            Dormido = true;
+            return "Durmiendo";
         }
-        public void Despertarse()
+        public string Despertarse()
         {
             if (!Dormido)
                 throw new Exception("Mascota ya esta despierta");
+            Dormido = false;
+            return "Despertando";
         }
     }
 }
